@@ -1,650 +1,631 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Project Blueprint — Unified Business OS</title>
-  <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#06b6d4;--glass:rgba(255,255,255,0.03)}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg,#081025 0%, #071021 100%);color:#e6eef6}
-    .wrap{max-width:1100px;margin:28px auto;padding:28px}
-    header{display:flex;gap:20px;align-items:center}
-    header h1{margin:0;font-size:26px}
-    header p{margin:0;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:20px}
-    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 6px 24px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
-    .section-title{display:flex;align-items:center;gap:12px}
-    h2{margin:0;font-size:18px}
-    h3{margin:12px 0;font-size:16px}
-    p.small{color:var(--muted);font-size:13px}
-    ul{margin:8px 0 16px 18px}
-    pre{white-space:pre-wrap;background:var(--glass);padding:12px;border-radius:8px;color:#dbeafe}
-    .feature{margin-bottom:18px;padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.02)}
-    .meta{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
-    .pill{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;color:var(--muted);font-size:13px}
-    .flow-wrap{margin-top:22px;text-align:center}
-    svg{max-width:100%;height:auto;background:transparent}
-    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
-    nav{position:sticky;top:24px}
-    .toc{list-style:none;padding:0;margin:0}
-    .toc li{margin:6px 0}
-    a{color:var(--accent);text-decoration:none}
-    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #34495e;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f6f9;
+            --card-bg: #fff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+        nav div a {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        nav div a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color);
+        }
+        section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        article {
+            margin-bottom: 1.5rem;
+        }
+        article h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+        article ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        article li {
+            background-color: var(--bg-color);
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+        strong {
+            color: var(--primary-color);
+        }
+        .example-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+        }
+        .example-box p {
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .mermaid-container {
+            text-align: center;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .mermaid-container h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
 
-  <nav style="background-color: #2c3e50; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-    <a href="#" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 1.2rem;">Project Blueprint</a>
-    <div>
-        <a href="index.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">Home</a>
-        <a href="idea.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">The Idea</a>
-        <a href="roadmap.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">Roadmap</a>
-    </div>
-  </nav>
-  <div class="wrap">
+    <nav style="background-color: #2c3e50; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <a href="#" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 1.2rem;">Project Blueprint</a>
+        <div>
+            <a href="index.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">Home</a>
+            <a href="idea.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">The Idea</a>
+            <a href="roadmap.html" style="color: #fff; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: background-color 0.3s;">Roadmap</a>
+        </div>
+    </nav>
+
     <header>
-      <div>
-        <h1>Project Blueprint — Unified Business OS</h1>
-        <p class="small">A complete master blueprint: inputs &rarr; processing &rarr; outputs, with real-time examples and an embedded flowchart.</p>
-      </div>
-    </header><div class="grid">
-  <main class="card">
-
-    <section>
-      <div class="section-title"><h2>Vision Statement</h2></div>
-      <p class="small">To create the world's first AI-native, all-in-one business operating system that empowers entrepreneurs by automating non-technical functions and providing proactive strategic guidance.</p>
-    </section>
-
-    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0" />
-
-    <section>
-      <div class="section-title"><h2>Section 1 — Core Operational Team (Detailed)</h2></div>
-
-      <!-- Feature 1 -->
-      <div class="feature">
-        <h3>1. User Management</h3>
-        <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-        <pre>
-
-Inputs:
-
-Email, password, company details, KYC docs (optional) Processing:
-
-Create encrypted user profile
-
-Assign tenant_id (multi-tenant isolation)
-
-Role-based permissions & 2FA enforcement
-
-Provision default workspace & COA template Outputs:
-
-Role-bound dashboard
-
-Secure tokens & audit log entry Real-time Example:
-
-Founder registers "Protonetix Pvt Ltd" → invites intern as "Staff" → intern sees expense entry but not payroll. </pre> </div>
-
-<!-- Feature 2 -->
-  <div class="feature">
-    <h3>2. Business Dashboard</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Timeframe selection, widget config
-
-Live feeds from Finance, Sales, Inventory Processing:
-
-Aggregate and compute KPIs (MRR, cash-runway, gross margin)
-
-Roll-ups by product, channel, or team Outputs:
-
-Interactive charts and alerts Real-time Example:
-
-Coffee startup sees "Revenue vs Expenses" graph + cash on hand metric for Q2. </pre> </div>
-
-<!-- Feature 3 -->
-  <div class="feature">
-    <h3>3. Financial Tracking</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Manual transaction, CSV bank feed, receipt images Processing:
-
-OCR receipt parsing
-
-Expense categorization model
-
-Ledger entry (double-entry post)
-
-Reconciliation engine matches bank csv to invoices Outputs:
-
-Real-time balance sheet, P&L, exportable reports Real-time Example:
-
-Team member uploads receipt (₹500) -> OCR -> auto-tagged as "Client Entertainment" -> P&L updated. </pre> </div>
-
-<!-- Feature 4 -->
-  <div class="feature">
-    <h3>4. Compliance & Filings</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Company financials, GSTIN, TDS data, payroll ledgers Processing:
-
-Rules engine applies latest GST/TDS laws
-
-Auto-fill government forms (GSTR, TDS returns)
-
-Prepare submission bundle & audit trail Outputs:
-
-Filed PDF, submission receipts, calendar reminders Real-time Example:
-
-System auto-populates GSTR-1; founder reviews and clicks "Submit" -> filing confirmation. </pre> </div>
-
-<!-- Feature 5 -->
-  <div class="feature">
-    <h3>5. Payroll</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Employee master, attendance, benefits, tax exemptions Processing:
-
-Compute gross salary, statutory deductions (PF/ESI/PT), net pay
-
-Generate payslips & bank instruction files Outputs:
-
-Payslips, payroll journal entries, bank transfer batch Real-time Example:
-
-Founder approves payroll -> salaries disbursed -> payroll recorded as expense in Finance. </pre> </div>
-
-<!-- Feature 6 -->
-  <div class="feature">
-    <h3>6. Sales & POS</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Product selection, discounts, payment method Processing:
-
-Transaction calculation, tax & discounts
-
-Payment gateway authorization
-
-Order creation & inventory decrement Outputs:
-
-Invoice (PDF/email), sales ledger entry, shipment trigger Real-time Example:
-
-E-commerce order -> invoice generated -> stock decremented -> dashboard updated. </pre> </div>
-
-<!-- Feature 7 -->
-  <div class="feature">
-    <h3>7. Inventory Management</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-SKU, cost, supplier, incoming PO, sales fulfillment Processing:
-
-Update stock levels, compute average cost, batch/lot tracking
-
-Trigger reorder alerts via rule engine Outputs:
-
-Inventory dashboard, suggested reorder, vendor PO Real-time Example:
-
-Stock falls below threshold -> auto-alert -> founder issues PO -> pending expense logged. </pre> </div>
-
-<!-- Feature 8 -->
-  <div class="feature">
-    <h3>8. Customer Relations (CRM)</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Lead details, purchase history, communication logs Processing:
-
-Segment customers, score leads, map touchpoints
-
-Trigger nurture sequences from Marketing module Outputs:
-
-Targeted customer lists, opportunity pipeline Real-time Example:
-
-Founder creates "Top 10% Spenders" segment -> marketing campaign sent via email. </pre> </div>
-
-<!-- Feature 9 -->
-  <div class="feature">
-    <h3>9. HR Management</h3>
-    <div class="meta"><span class="pill">Inputs</span><span class="pill">Processing</span><span class="pill">Outputs</span></div>
-    <pre>
-
-
-Inputs:
-
-Employee details, contracts, review dates Processing:
-
-Manage onboarding/offboarding, reminders for reviews
-
-Provide data to Payroll & Security modules Outputs:
-
-Employee directory, automated reminders, HR reports Real-time Example:
-
-New hire onboarded -> HR profile created -> payroll scheduled automatically. </pre> </div>
-
-</section>
-
-<hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0" />
-
-<section>
-  <div class="section-title"><h2>Section 2 — Integrated Suite (Additional Features)</h2></div>
-
-  <div class="feature">
-    <h3>Integrated Communication & Collaboration</h3>
-    <pre>
-
-
-Inputs:
-
-Chat messages, video invites, file uploads Processing:
-
-Store convo history, index for semantic search, detect action items Outputs:
-
-Chat channels, meeting links, auto-created tasks Real-time Example:
-
-AI detects "assign task" in chat and creates a task in Project Management. </pre> </div>
-
-<div class="feature">
-    <h3>Integrated Project Management</h3>
-    <pre>
-
-
-Inputs:
-
-Tasks, deadlines, assignments Processing:
-
-Kanban/board updates, progress tracking, KPI calculations Outputs:
-
-Project health dashboard, bottleneck alerts Real-time Example:
-
-Project manager assigns bug fix -> assigned developer notified -> task added to sprint. </pre> </div>
-
-<div class="feature">
-    <h3>Integrated Website Builder</h3>
-    <pre>
-
-
-Inputs:
-
-Product catalog, images, copy Processing:
-
-Generate storefront, map products to SKUs, enable payment Outputs:
-
-Live e-commerce site, product pages, orders routed to Sales module Real-time Example:
-
-Founder publishes product -> site updates -> first order recorded in OS. </pre> </div>
-
-</section>
-
-<hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0" />
-
-<section>
-  <div class="section-title"><h2>Section 3 — AI-Powered Executive Team (Detailed)</h2></div>
-
-  <div class="feature">
-    <h3>The AI Motor (Core AI Engine)</h3>
-    <pre>
-
-
-Inputs:
-
-Streaming data from all modules (transactions, inventory, HR, conversations) Processing:
-
-Data ingestion pipeline, vectorization, model fine-tuning, multi-model orchestration Outputs:
-
-Context-rich embeddings, signals for downstream AI roles, retrievable context Real-time Example:
-
-Quarterly sales data enters -> embeddings updated -> AI Co-Pilot can answer "growth drivers" questions. </pre> </div>
-
-<div class="feature">
-    <h3>The AI Co-Pilot (Text + Voice)</h3>
-    <pre>
-
-
-Inputs:
-
-Natural language query (text or speech) Processing:
-
-STT (speech->text), semantic retrieval (vector DB), LLM generation, response TTS Outputs:
-
-Conversational answer, suggested actions, direct task creation Real-time Example:
-
-"Should I raise prices?" -> AI Co-Pilot returns competitor pricing, margin impact, and simulates revenue scenarios. </pre> </div>
-
-<div class="feature">
-    <h3>The AI CEO (Proactive Strategic Insights)</h3>
-    <pre>
-
-
-Inputs:
-
-Aggregated company metrics, market feeds (optional) Processing:
-
-Cross-model analysis, trend detection, prescriptive recommendations Outputs:
-
-Push alerts, strategic memos, suggested OKRs Real-time Example:
-
-"AI CEO: CAC rising but LTV stable - increase ad budget by 15% to scale." </pre> </div>
-
-<div class="feature">
-    <h3>The AI CTO (Platform Health & Security)</h3>
-    <pre>
-
-
-Inputs:
-
-System logs, infra metrics, security alerts Processing:
-
-Anomaly detection, auto-remediation playbooks, patch orchestration Outputs:
-
-Platform health dashboard, security alerts, automatic mitigations Real-time Example:
-
-New exploit pattern detected -> auto-deploy patch to affected nodes -> alert to admin. </pre> </div>
-
-<div class="feature">
-    <h3>The AI CFO (Forecasting & Alerts)</h3>
-    <pre>
-
-
-Inputs:
-
-Historical revenues, payments, burn-rate Processing:
-
-Time-series forecasting, scenario-simulation, stress tests Outputs:
-
-Cash runway alerts, suggested cost reductions, funding triggers Real-time Example:
-
-"AI CFO: Runway at 4 months. Suggest pause on hiring and increase collections." </pre> </div>
-
-<div class="feature">
-    <h3>The AI Auditor & CA</h3>
-    <pre>
-
-
-Inputs:
-
-All financial transactions, receipts, bank statements Processing:
-
-Continuous reconciliation, anomaly detection, missing-document alerts Outputs:
-
-Audit trail, flagged exceptions, audit-ready reports Real-time Example:
-
-Missing receipt flagged -> employee prompted to upload or manager to approve. </pre> </div>
-
-<div class="feature">
-    <h3>The AI Lawyer</h3>
-    <pre>
-
-
-Inputs:
-
-Contracts, NDAs, employment agreements Processing:
-
-Clause extraction, compliance checks, risky-clause highlighting, suggested edits Outputs:
-
-Risk report, revised clause suggestions, compliance checklist Real-time Example:
-
-Upload intern contract -> AI flags non-compliant clause -> suggests compliant rewrite. </pre> </div>
-
-<div class="feature">
-    <h3>The AI Marketer</h3>
-    <pre>
-
-
-Inputs:
-
-Campaign history, customer segments, product data Processing:
-
-Content generation, A/B prediction, ROI simulation Outputs:
-
-Ready-to-use ad copy, campaign schedule, predicted conversions Real-time Example:
-
-"Create an email for Top 10% Spenders" -> AI generates copy + send time suggestion + expected conversion. </pre> </div>
-
-<div class="feature">
-    <h3>The AI Inventory Manager</h3>
-    <pre>
-
-
-Inputs:
-
-Sales velocity, lead times, supplier performance Processing:
-
-Demand forecasting, reorder optimization, safety stock calculation Outputs:
-
-Suggested reorder qty, optimal supplier selection, automated PO creation Real-time Example:
-
-Seasonal spike forecasted -> AI recommends 2x reorder quantity and auto-creates PO draft. </pre> </div>
-
-<div class="feature">
-    <h3>Business Coaching & Knowledge Base</h3>
-    <pre>
-
-
-Inputs:
-
-User queries, playbooks, templates Processing:
-
-Personalize content, recommend SOPs, surface relevant tutorials Outputs:
-
-Curated learning path, templates, and checklists Real-time Example:
-
-Founder opens "How to write a business plan" -> step-by-step interactive template appears. </pre> </div>
-
-</section>
-
-<hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0" />
-
-<section>
-  <div class="section-title"><h2>Section 4 — AI Infrastructure Blueprint</h2></div>
-
-  <div class="feature">
-    <h3>Multi-Model Architecture (LLM + Specialized Models)</h3>
-    <pre>
-
-
-Inputs:
-
-Module data (text, tabular, PDFs), system logs Processing:
-
-Vector embeddings per document (vector DB), retriever, task-specific models
-
-Orchestration layer routes queries to specialized model(s) Outputs:
-
-Contextual answers, task-specific inferences, embeddings updated Real-time Example:
-
-Expense receipt -> OCR model -> embedding created -> retriever finds similar prior expenses. </pre> </div>
-
-<div class="feature">
-    <h3>Hosting & Hardware Strategy</h3>
-    <pre>
-
-
-Inputs:
-
-Expected concurrency, model size, latency SLAs Processing:
-
-Provision reserved GPU instances for inference
-
-Use burstable instances for training/fine-tuning Outputs:
-
-Cost-optimized infra, single-tenant isolation where required Real-time Example:
-
-Black Friday surge -> autoscale inference nodes to maintain sub-second responses. </pre> </div>
-
-<div class="feature">
-    <h3>Privacy & Security</h3>
-    <pre>
-
-
-Inputs:
-
-User PII, financial data, contracts Processing:
-
-Field-level encryption, role-based access, audit logging, anonymized training pipelines Outputs:
-
-GDPR/PDPA-ready controls, encrypted vector DB, detailed access reports Real-time Example:
-
-CEO requests financial forecast -> system verifies role and logs the access event. </pre> </div>
-
-</section>
-
-<hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0" />
-
-<section>
-  <div class="section-title"><h2>Section 5 — Financial Blueprint (Summary)</h2></div>
-  <div class="feature">
-    <pre>
-
-
-Revenue Model:
-
-Freemium -> Pro -> Enterprise tiers
-
-Add-ons: integrations, premium AI models, dedicated infra Key Metrics (Target):
-
-LTV:CAC > 5:1
-
-Year 1 Revenue (target): ₹200 Lakhs
-
-Year 3 (target): ₹1,500 Lakhs Real-time Example:
-
-A startup on Starter plan upgrades to Pro when payroll headcount crosses 8 -> ARPU increases and onboarding success tracked. </pre> </div> </section>
-
-<section class="flow-wrap card" aria-label="Flowchart">
-  <h2>System Flowchart (High-level)</h2>
-  <p class="small">Interactive SVG flowchart below — visualizes data flow from user input → AI Motor → downstream modules.</p>
-
-  <!-- Embedded SVG flowchart -->
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/></filter>
-    </defs>
-
-    <!-- User Layer -->
-    <rect x="40" y="30" width="1120" height="120" rx="12" fill="#061122" stroke="rgba(255,255,255,0.02)"/>
-    <text x="70" y="66" font-size="18" fill="#cfeef8" font-weight="600">Users & Data Sources</text>
-    <text x="70" y="92" font-size="13" fill="#9fbcc6">Mobile apps, POS, Bank feeds, CSV uploads, Chat logs, Website</text>
-
-    <!-- Data Sources icons -->
-    <g fill="#072f3a" stroke="#0fb7c4" stroke-width="0.8">
-      <rect x="80" y="140" width="160" height="60" rx="8" fill="#04202a"/>
-      <text x="110" y="178" fill="#bff1fb" font-size="12">Finance</text>
-
-      <rect x="270" y="140" width="160" height="60" rx="8" fill="#04202a"/>
-      <text x="300" y="178" fill="#bff1fb" font-size="12">Inventory</text>
-
-      <rect x="460" y="140" width="160" height="60" rx="8" fill="#04202a"/>
-      <text x="492" y="178" fill="#bff1fb" font-size="12">HR / Payroll</text>
-
-      <rect x="650" y="140" width="160" height="60" rx="8" fill="#04202a"/>
-      <text x="678" y="178" fill="#bff1fb" font-size="12">CRM</text>
-
-      <rect x="840" y="140" width="160" height="60" rx="8" fill="#04202a"/>
-      <text x="870" y="178" fill="#bff1fb" font-size="12">Chat / Meetings</text>
-    </g>
-
-    <!-- Arrows to AI Motor -->
-    <g stroke="#0fb7c4" stroke-width="2" fill="none" stroke-linecap="round">
-      <path d="M160 200 C200 260, 400 320, 560 360"/>
-      <path d="M350 200 C380 260, 520 310, 560 360"/>
-      <path d="M540 200 C580 260, 630 300, 560 360"/>
-      <path d="M720 200 C700 260, 650 300, 560 360"/>
-      <path d="M900 200 C880 260, 740 300, 560 360"/>
-    </g>
-
-    <!-- AI Motor -->
-    <g>
-      <ellipse cx="560" cy="420" rx="260" ry="80" fill="#03303a" stroke="#09a9bf" stroke-width="1.5" filter="url(#shadow)"/>
-      <text x="460" y="415" fill="#bff1fb" font-size="16" font-weight="700">AI Motor (Vector DB + LLM + Models)</text>
-      <text x="480" y="435" fill="#9fbcc6" font-size="12">Embeddings | Retriever | Fine-tuned models</text>
-    </g>
-
-    <!-- Downstream AI roles -->
-    <g fill="#052431" stroke="#0fb7c4" stroke-width="0.8">
-      <rect x="120" y="520" width="200" height="68" rx="8"/>
-      <text x="150" y="556" fill="#bff1fb" font-size="13">AI CFO</text>
-      <rect x="360" y="520" width="200" height="68" rx="8"/>
-      <text x="420" y="556" fill="#bff1fb" font-size="13">AI Marketer</text>
-      <rect x="600" y="520" width="200" height="68" rx="8"/>
-      <text x="640" y="556" fill="#bff1fb" font-size="13">AI Inventory</text>
-      <rect x="840" y="520" width="200" height="68" rx="8"/>
-      <text x="880" y="556" fill="#bff1fb" font-size="13">AI Co-Pilot</text>
-    </g>
-
-    <!-- Arrows from AI Motor to roles -->
-    <g stroke="#0fb7c4" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#arrow)">
-      <path d="M560 500 L560 540"/>
-    </g>
-
-    <defs>
-      <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
-        <path d="M0 0 L10 5 L0 10 z" fill="#0fb7c4"/>
-      </marker>
-    </defs>
-
-    <!-- Outputs layer -->
-    <rect x="40" y="610" width="1120" height="120" rx="12" fill="#061122" stroke="rgba(255,255,255,0.02)"/>
-    <text x="70" y="646" font-size="18" fill="#cfeef8" font-weight="600">Actions & Outputs</text>
-    <text x="70" y="672" font-size="13" fill="#9fbcc6">Dashboards, Alerts, Auto POs, Payslips, Invoices, Legal Reports, Marketing Assets</text>
-
-  </svg>
-
-</section>
-
-<footer>
-  <p>Master Blueprint — export this page as HTML/PDF for investor decks and dev handoff.</p>
-</footer>
-
-  </main>  <aside class="card">
-    <h3>Quick Navigation</h3>
-    <ul class="toc">
-      <li><a href="#">Vision & Overview</a></li>
-      <li><a href="#">Core Operational Team</a></li>
-      <li><a href="#">Integrated Suite</a></li>
-      <li><a href="#">AI Executive Team</a></li>
-      <li><a href="#">AI Infrastructure</a></li>
-      <li><a href="#">Financial Blueprint</a></li>
-    </ul><hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
-
-<h3>Recommended Next Actions</h3>
-<ol>
-  <li>Share this HTML with your dev team.</li>
-  <li>Use it to create a PRD & sprint backlog.</li>
-  <li>Schedule an architecture review for AI infra.</li>
-</ol>
-
-<hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
-<p class="small">Need a PDF export, sprint-ready PRD, or investor one-pager? Ask me to generate it from this blueprint.</p>
-
-  </aside>
-</div>
-  </div>
+        <h1>Project Blueprint: A Unified Business OS</h1>
+        <p>To create the world's first AI-native, all-in-one business operating system that empowers entrepreneurs by automating all non-technical functions and providing proactive, strategic guidance.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Section 1: The Core Operational Team</h2>
+            <p>This section details the foundational, non-AI features. These are the tools that handle the day-to-day operations with flawless precision and serve as the data source for our AI-powered C-suite.</p>
+            <article>
+                <h3>1. User Management</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Provides secure, role-based access to the platform.</li>
+                    <li><strong>User Inputs:</strong> Email, password, company details during sign-up.</li>
+                    <li><strong>Processing:</strong> Creates a secure user profile. Encrypts all credentials. Assigns a user role (e.g., owner, staff, intern).</li>
+                    <li><strong>Output:</strong> A secure, personalized dashboard with features accessible based on the user's role.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A founder signs up, creates the company profile for Protonetix Private Limited, and invites a new intern to join. The intern is given a "Staff" role, which gives them access to expense tracking but not payroll.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>2. Business Dashboard</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Acts as the central command center, giving a real-time overview of the company's health.</li>
+                    <li><strong>User Inputs:</strong> Timeframe selection (e.g., this month, last quarter). Customization of widgets.</li>
+                    <li><strong>Processing:</strong> Continuously pulls and aggregates data from the Financial Tracking, Sales, and Inventory modules. It calculates key metrics like profit, loss, and cash flow.</li>
+                    <li><strong>Output:</strong> Interactive charts and graphs showing a real-time summary of the business.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The founder of a coffee bean startup logs in and sees a line graph of "Revenue vs. Expenses" for the past quarter. A pie chart shows a breakdown of expenses, and a clear number shows the current cash on hand.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>3. Financial Tracking</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Records and categorizes every expense and revenue transaction.</li>
+                    <li><strong>User Inputs:</strong> Manual entry of transaction details or a photo of a receipt.</li>
+                    <li><strong>Processing:</strong> OCR: An internal service reads text from the receipt image. Categorization Model: A machine learning model identifies the vendor and automatically suggests an expense category (e.g., "Uber" becomes "Travel"). Data Interconnections: Automatically sends new expense data to the Business Dashboard and the Auditor & CA for validation.</li>
+                    <li><strong>Output:</strong> A clean, organized list of all transactions and a real-time balance sheet.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A team member buys coffee for a client meeting. They snap a photo of the receipt, and the app instantly logs a ₹500 expense, tags it as "Client Entertainment," and updates the company's P&L statement.</p>
+                </div>
+            </article>
+            
+            <article>
+                <h3>4. Compliance & Filings</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Automatically prepares tax forms and manages compliance deadlines.</li>
+                    <li><strong>User Inputs:</strong> Final approval to submit a pre-filled form.</li>
+                    <li><strong>Processing:</strong> Data Aggregation: Gathers all financial data (sales, expenses, payroll) for the specified period. Rules Engine: Applies the latest GST, TDS, and ITR regulations to the data. Form Generation: Creates a complete, audit-ready form for review. API Submission: Uses secure APIs to submit the data to government portals.</li>
+                    <li><strong>Output:</strong> A PDF of the filed document and a clear confirmation of submission.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> It's GST filing season. The platform automatically generates the GST-R1 form with all sales data already included. The founder just has to click "Review & Submit," saving hours of manual work and avoiding penalties.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>5. Payroll</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Manages employee wages, deductions, and direct payments.</li>
+                    <li><strong>User Inputs:</strong> Initial employee details (salary, bank info). Final approval to run a payroll cycle.</li>
+                    <li><strong>Processing:</strong> Rules Engine: Calculates gross pay, deductions (PF, ESI), and net pay based on local regulations and employee data from the HR Management module. Data Interconnections: Records the payroll cost as an expense in the Financial Tracking module and updates the Business Dashboard.</li>
+                    <li><strong>Output:</strong> Accurate pay slips, a payroll report, and secure bank transfer instructions.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The founder approves the monthly payroll run. In an instant, the platform sends pay slips to each employee's email, transfers their salaries, and logs the total payroll cost as an expense for the month.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>6. Sales & POS</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A unified system for managing all sales and orders.</li>
+                    <li><strong>User Inputs:</strong> Selection of products from a digital catalog. Payment processing.</li>
+                    <li><strong>Processing:</strong> Transaction Logic: Calculates the total amount, applies discounts, and processes payments. Data Interconnections: Updates the Financial Tracking with a new revenue transaction. Decrements the stock count in the Inventory Management module. Creates or updates a customer profile in the Customer Relations module.</li>
+                    <li><strong>Output:</strong> A professional, digital invoice sent to the customer and real-time sales data for the Business Dashboard.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A customer buys a product from an e-commerce storefront powered by our platform. An invoice is automatically generated, the item is removed from inventory, and the revenue is immediately reflected on the founder's dashboard.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>7. Inventory Management</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Tracks stock levels, manages suppliers, and handles purchase orders.</li>
+                    <li><strong>User Inputs:</strong> New product details (SKU, cost), new supplier details.</li>
+                    <li><strong>Processing:</strong> Data Interconnections: Receives data from the Sales & POS module to decrement stock. Receives data from a new purchase order to increment stock. Alert Engine: Sends an alert when stock for a product falls below a predefined threshold.</li>
+                    <li><strong>Output:</strong> A real-time, color-coded inventory dashboard and automated reorder alerts.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform alerts a founder that a product is running low. The founder goes to the Inventory Management module, selects the supplier, and creates a purchase order with a few clicks. The platform sends the order to the supplier and updates the founder's finance reports to show the pending expense.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>8. Customer Relations</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Tracks and segments customers based on their behavior to power marketing.</li>
+                    <li><strong>User Inputs:</strong> Criteria for customer segmentation (e.g., total spending, time since last purchase).</li>
+                    <li><strong>Processing:</strong> Continuously analyzes sales data to create dynamic customer segments.</li>
+                    <li><strong>Output:</strong> A list of targeted customers for a marketing campaign.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The founder wants to send a special offer to their most loyal customers. They create a segment for "Top 10% Spenders" and the platform instantly provides a list of names and contact info.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>9. HR Management</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A central hub for all employee data.</li>
+                    <li><strong>User Inputs:</strong> Employee personal details, salary, and start date.</li>
+                    <li><strong>Processing:</strong> Data Interconnections: Provides employee data to the Payroll module. Reminder Engine: Tracks key dates like performance review schedules and contract renewals.</li>
+                    <li><strong>Output:</strong> A secure employee database and automated reminders for HR tasks.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A new intern joins. The founder creates a new employee profile. The platform automatically sends a notification to the Payroll module and sets a reminder for a performance review in three months.</p>
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <h2>Section 2: The Integrated Suite</h2>
+            <p>These are the additional features that create a truly unified operating system.</p>
+            <article>
+                <h3>1. Integrated Communication & Collaboration Suite</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A built-in chat and video conferencing tool.</li>
+                    <li><strong>User Inputs:</strong> Text messages, video call invitations.</li>
+                    <li><strong>Processing:</strong> Chat: Stores and organizes team conversations. Video: Connects users for meetings. Data Interconnections: The AI can analyze conversations to identify action items and create tasks in the Project Management module.</li>
+                    <li><strong>Output:</strong> A central place for team communication.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> Two team members are chatting about a new project. The AI detects the conversation topic and automatically suggests, "Would you like me to create a new task on your Kanban board for Project X?"</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>2. Integrated Project Management</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A simple, powerful tool for managing projects and team tasks.</li>
+                    <li><strong>User Inputs:</strong> Creating tasks, setting deadlines, assigning team members.</li>
+                    <li><strong>Processing:</strong> Data Interconnections: The AI COO analyzes task completion rates to identify bottlenecks. The AI Motor can provide insights on project health.</li>
+                    <li><strong>Output:</strong> A visual Kanban board and a list of tasks with due dates.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A project manager creates a new task. The platform automatically sends a notification to the assigned team member and adds the task to their to-do list.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>3. Integrated Website Builder</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A simple e-commerce website builder that connects directly to the OS.</li>
+                    <li><strong>User Inputs:</strong> Adding products, customizing the design, setting up payment.</li>
+                    <li><strong>Processing:</strong> Data Interconnections: All products added to the website are automatically added to the Inventory Management module. All sales are automatically logged in the Sales & POS module.</li>
+                    <li><strong>Output:</strong> A fully functional e-commerce website for the business.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A founder creates an e-commerce website for their product. They add a new coffee mug to their online store. The platform automatically creates a new product in the inventory and begins tracking its stock level.</p>
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <h2>Section 3: The AI-Powered Executive Team</h2>
+            <p>This section details the powerful AI features that are the core differentiator of your product.</p>
+            <article>
+                <h3>1. The AI Motor: The Driving Force</h3>
+                <ul>
+                    <li><strong>What it does:</strong> The self-hosted, private AI engine that powers all intelligence.</li>
+                    <li><strong>User Inputs:</strong> None. It operates automatically.</li>
+                    <li><strong>Processing:</strong> Data Ingestion: Ingests all real-time data from every module. Model Training: Continuously fine-tunes specialized AI models on your company's data. Vectorization: Converts data into vector embeddings for semantic search.</li>
+                    <li><strong>Output:</strong> A stream of pre-processed, high-quality intelligence that feeds all the other AI roles.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> It's the silent force behind every insight. When the AI Marketer suggests a headline, it's the AI Motor's generative model that created it.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>2. The AI Co-Pilot: Your Conversational Partner</h3>
+                <ul>
+                    <li><strong>What it does:</strong> A voice and text-based strategic advisor.</li>
+                    <li><strong>User Inputs:</strong> Natural language queries. "What's our biggest expense this month?" or "Give me a summary of our quarter two performance."</li>
+                    <li><strong>Processing:</strong> NLP: Understands the natural language of the query. Semantic Search: Queries the internal vector database to find relevant company data. LLM Processing: Feeds the query and the relevant data to the LLM to generate a personalized response.</li>
+                    <li><strong>Output:</strong> A conversational, detailed, and actionable response.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The founder asks, "Should I raise prices for our product?" The AI responds with a summary of competitor pricing, your current profit margin, and a projection of the revenue impact if you were to raise the price by 10%.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>3. The AI CEO: Your Strategic Visionary</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Provides high-level strategic insights.</li>
+                    <li><strong>User Inputs:</strong> None, it is proactive.</li>
+                    <li><strong>Processing:</strong> Cross-references data from the AI Marketer, AI CFO, and AI Inventory Manager to identify macro trends.</li>
+                    <li><strong>Output:</strong> Proactive recommendations on growth, market opportunities, and areas of inefficiency.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform sends an alert: "AI CEO Insight: Your customer acquisition cost is increasing, but customer lifetime value is also up. This suggests a strong opportunity to increase your marketing budget to accelerate growth."</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>4. The AI CTO: The Technical Architect & Innovator</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Ensures a secure and scalable platform.</li>
+                    <li><strong>User Inputs:</strong> None, it is proactive.</li>
+                    <li><strong>Processing:</strong> Monitors platform performance, security logs, and data integrity.</li>
+                    <li><strong>Output:</strong> A secure, frictionless user experience and proactive alerts about potential security vulnerabilities.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform detects a new type of cyber-threat and automatically deploys a new security patch to protect the entire system, all without the need for manual intervention.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>5. The AI CFO: Your Financial Forecaster</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Predicts cash flow and budgets.</li>
+                    <li><strong>User Inputs:</strong> None, it is proactive.</li>
+                    <li><strong>Processing:</strong> Uses time-series forecasting models to predict future cash flow based on historical data.</li>
+                    <li><strong>Output:</strong> Proactive alerts on potential cash shortfalls and actionable recommendations to prevent them.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform sends a push notification: "AI CFO Alert: A cash shortfall is projected in 5 months. Recommend renegotiating vendor contracts or launching a targeted sales campaign to increase revenue."</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>6. The AI Auditor & CA: Your Financial Watchdog</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Performs continuous internal audits.</li>
+                    <li><strong>User Inputs:</strong> None, it is proactive.</li>
+                    <li><strong>Processing:</strong> Scans every financial transaction and cross-references it with receipts, invoices, and bank statements to find discrepancies.</li>
+                    <li><strong>Output:</strong> Proactive alerts on errors, missing documents, or inconsistencies.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform finds an expense logged for ₹5,000 without a corresponding receipt. It sends a notification to the team member who logged the expense, asking them to upload the missing document.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>7. The AI Lawyer: Your Legal Guardian</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Provides proactive legal guidance and analyzes documents.</li>
+                    <li><strong>User Inputs:</strong> Upload a legal document.</li>
+                    <li><strong>Processing:</strong> Document Analysis: Uses NLP to scan legal documents for risky clauses. Compliance Check: Cross-references company actions with the Companies Act and other legal regulations.</li>
+                    <li><strong>Output:</strong> A risk report for a legal document and a proactive alert if a compliance issue is detected.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A new intern's contract is uploaded. The AI Lawyer scans it and flags a clause that is not compliant with local labor laws. It provides a revised, compliant version of the clause.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>8. The AI Marketer: Your Creative Partner</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Generates content and predicts campaign ROI.</li>
+                    <li><strong>User Inputs:</strong> Simple prompts for content (e.g., "Write a blog post about our new feature").</li>
+                    <li><strong>Processing:</strong> Generative AI: Creates compelling ad copy and marketing content. Predictive Analytics: Analyzes past campaign data to predict the ROI of future campaigns.</li>
+                    <li><strong>Output:</strong> High-quality, ready-to-use content and data-backed predictions on campaign performance.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The founder asks the AI Marketer for a new blog post. The AI uses the company's product data from the Inventory module to create a detailed, engaging post that is ready to publish.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>9. The AI Inventory Manager: Your Predictive Forecaster</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Predicts demand to optimize stock levels.</li>
+                    <li><strong>User Inputs:</strong> None, it is proactive.</li>
+                    <li><strong>Processing:</strong> Uses time-series analysis on sales data to predict future demand.</li>
+                    <li><strong>Output:</strong> A demand forecast for each product and an automated alert with a suggested reorder quantity.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> The platform detects a seasonal demand spike for a product. It sends a notification to the founder with a recommended reorder quantity, ensuring they are prepared for the increased sales.</p>
+                </div>
+            </article>
+
+            <article>
+                <h3>10. Business Coaching & Knowledge Base</h3>
+                <ul>
+                    <li><strong>What it does:</strong> Provides curated content and guidance for founders.</li>
+                    <li><strong>User Inputs:</strong> Accessing the knowledge base.</li>
+                    <li><strong>Processing:</strong> Organizes content based on a founder's needs.</li>
+                    <li><strong>Output:</strong> A library of articles, tutorials, and business playbooks.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Real-Time Example:</strong> A founder is struggling to create a business plan. They go to the knowledge base and find a step-by-step guide on "How to Write Your First Business Plan," complete with a template.</p>
+                </div>
+            </article>
+        </section>
+
+        <section>
+            <h2>Section 4: The AI Infrastructure Blueprint</h2>
+            <p>This section details the precise technical architecture for our self-hosted AI, which ensures security, scalability, and a competitive edge.</p>
+            <article>
+                <h3>1. The AI Motor: Technical Architecture</h3>
+                <ul>
+                    <li><strong>What it is:</strong> A custom-built, multi-agent AI system. It's not a single large model, but a collection of specialized models working in harmony. This allows us to use smaller, more efficient models for specific tasks (e.g., a fine-tuned model for expense categorization) and a larger model for the conversational Co-Pilot.</li>
+                    <li><strong>Core Components:</strong> LLM (Large Language Model), Vector Database, Specialized Models.</li>
+                    <li><strong>Processing Flow:</strong> User Input -> Query to Vector DB -> Context Retrieval -> LLM Processing -> Output.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>2. Hardware & Hosting</h3>
+                <ul>
+                    <li><strong>Why self-hosted:</strong> By hosting our own AI, we have complete control over data, security, and costs. We can scale our hardware as our user base grows, avoiding the unpredictable costs of per-token API usage.</li>
+                    <li><strong>Hosting Options:</strong> Cloud-based GPU server from a major provider like AWS or GCP.</li>
+                    <li><strong>Budget Breakdown:</strong> Reserved Instance (Continuous) for core services and On-Demand Instances (Burst) for intensive tasks like model training.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>3. Privacy & Security</h3>
+                <ul>
+                    <li><strong>Private-by-Design:</strong> All user data is encrypted and stored in a private vector database. It is never sent to a third-party API.</li>
+                    <li><strong>Data Anonymization:</strong> For model training, we will use anonymized, aggregated data to improve the model's performance without compromising user privacy.</li>
+                    <li><strong>Role-Based Access:</strong> Access to sensitive AI functions will be tied to a user's role. For instance, only the CEO or CFO will be able to ask for high-level financial predictions.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2>Section 5: The Financial Blueprint</h2>
+            <p>This section provides a clear, data-driven look at the business model and financial projections.</p>
+            <article>
+                <h3>1. LTV:CAC Ratio</h3>
+                <ul>
+                    <li><strong>The Goal:</strong> A healthy SaaS business has an LTV (Customer Lifetime Value) that is at least 3x its CAC (Customer Acquisition Cost). Our goal is to achieve an LTV:CAC ratio of 5:1 or higher.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>2. Revenue Model</h3>
+                <ul>
+                    <li><strong>Freemium Tier:</strong> A free plan with access to basic features. This is our primary user acquisition tool.</li>
+                    <li><strong>Pro Tier:</strong> A paid plan for growing startups with a small team. It includes all core features and the foundational AI services (e.g., the AI Accountant, AI Marketer).</li>
+                    <li><strong>Enterprise Tier:</strong> A premium plan for larger companies. It includes the full AI suite (e.g., the AI Lawyer, advanced analytics) and dedicated support.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>3. Financial Projections</h3>
+                <ul>
+                    <li><strong>Year 1:</strong> ₹ 200 Lakhs. We'll focus on acquiring our first 10,000 users and converting a portion to our Pro plan.</li>
+                    <li><strong>Year 2:</strong> ₹ 650 Lakhs. Revenue will accelerate as we roll out more AI features and a higher percentage of users upgrade to the Pro and Enterprise tiers.</li>
+                    <li><strong>Year 3:</strong> ₹ 1,500 Lakhs. We'll achieve profitability and a clear path to becoming a market leader.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2>Section 6: The Final Conclusion & Call to Action</h2>
+            <article>
+                <h3>1. The Big Idea</h3>
+                <ul>
+                    <li><strong>Summary:</strong> Our product is a single, AI-native business OS that solves a critical problem for entrepreneurs. It is more secure, more affordable, and more intelligent than any other fragmented solution on the market.</li>
+                    <li><strong>Value Proposition:</strong> We are not just selling a product; we are selling a partnership. We provide entrepreneurs with a comprehensive digital C-suite, allowing them to focus on what truly matters: building their company.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>2. The Kingdom We're Building</h3>
+                <ul>
+                    <li><strong>Mission:</strong> To democratize access to the tools and intelligence that were once reserved for large corporations. We are empowering a new generation of founders to succeed.</li>
+                    <li><strong>Call to Action:</strong> Join us on this mission. Let's build the future of business together.</li>
+                </ul>
+            </article>
+        </section>
+
+        <div class="mermaid-container">
+            <h3>AI-Powered Business OS Flowchart</h3>
+            <pre class="mermaid">
+graph TD
+    A[User Action: Sign-up / Login] --> B(User Management Module);
+    A --> C(Sales & POS Module);
+    A --> D(Financial Tracking Module);
+    A --> E(HR Management Module);
+
+    subgraph Core Operational Team
+        B --> F[Secure User Profile];
+        C --> G{New Sale?};
+        G --> H(Update Inventory);
+        G --> I(Update Financials);
+        D --> J(Categorize Expense);
+        J --> K(Update Business Dashboard);
+        E --> L(Update Payroll);
+        L --> M(Update Financials);
+    end
+
+    subgraph The AI-Powered Executive Team
+        subgraph The AI Motor
+            N[Data Ingestion: Real-time data from all modules] --> O(Model Training & Fine-tuning);
+            O --> P(Vectorization);
+            P --> Q(Vector Database);
+        end
+        
+        subgraph Proactive AI Functions
+            R[AI CFO] --> S[Predict Cash Flow];
+            T[AI Auditor & CA] --> U[Audit Transactions];
+            V[AI Inventory Manager] --> W[Predict Demand];
+            X[AI CEO] --> Y[Provide Strategic Insights];
+            Z[AI CTO] --> AA[Monitor Security];
+            BB[AI Lawyer] --> CC[Analyze Legal Docs];
+            DD[AI Marketer] --> EE[Generate Content];
+        end
+
+        subgraph Conversational AI
+            FF[User Query: "How is business?"] --> GG(AI Co-Pilot);
+            GG --> Q;
+            Q --> HH[Relevant Context];
+            HH --> II(LLM Processing);
+            II --> JJ[Personalized Response];
+        end
+    end
+
+    K --> N;
+    I --> N;
+    H --> W;
+    W --> C;
+    S --> K;
+    U --> D;
+    EE --> C;
+    Y --> K;
+    AA --> K;
+    BB --> B;
+    BB --> E;
+
+    style A fill:#4CAF50,stroke:#333;
+    style C fill:#FFC107,stroke:#333;
+    style D fill:#FFC107,stroke:#333;
+    style G fill:#FFC107,stroke:#333;
+    style K fill:#2196F3,stroke:#333;
+    style N fill:#9C27B0,stroke:#333;
+    style R fill:#E91E63,stroke:#333;
+    style T fill:#E91E63,stroke:#333;
+    style V fill:#E91E63,stroke:#333;
+    style X fill:#E91E63,stroke:#333;
+    style Z fill:#E91E63,stroke:#333;
+    style BB fill:#E91E63,stroke:#333;
+    style DD fill:#E91E63,stroke:#333;
+    style FF fill:#03A9F4,stroke:#333;
+    style GG fill:#2196F3,stroke:#333;
+    style JJ fill:#8BC34A,stroke:#333;
+            </pre>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Project Blueprint. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 </body>
-  </html>
+</html>
