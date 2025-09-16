@@ -545,76 +545,57 @@
             <h3>AI-Powered Business OS Flowchart</h3>
             <pre class="mermaid">
 graph TD
-    A[User Action: Sign-up / Login] --> B(User Management Module);
-    A --> C(Sales & POS Module);
-    A --> D(Financial Tracking Module);
-    A --> E(HR Management Module);
-
+    start[Start: User Action] --> A(User Management);
+    A --> B[User Profile Created];
+    
     subgraph Core Operational Team
-        B --> F[Secure User Profile];
-        C --> G{New Sale?};
-        G --> H(Update Inventory);
-        G --> I(Update Financials);
-        D --> J(Categorize Expense);
-        J --> K(Update Business Dashboard);
-        E --> L(Update Payroll);
-        L --> M(Update Financials);
+        direction LR
+        C(Financial Tracking) --> D{New Transaction?};
+        D --> E[Categorize & Log];
+        E --> F(Business Dashboard);
+        E --> G[Auditor & CA];
+
+        H(Sales & POS) --> I{New Sale?};
+        I --> J[Update Financials];
+        I --> K[Update Inventory];
+        J --> F;
+        K --> L(Inventory Management);
+
+        M(Payroll) --> N{Run Payroll?};
+        N --> O[Calculate Pay];
+        O --> J;
+
+        P(HR Management) --> Q{New Employee?};
+        Q --> R[Employee Profile];
+        R --> O;
     end
 
     subgraph The AI-Powered Executive Team
+        direction LR
         subgraph The AI Motor
-            N[Data Ingestion: Real-time data from all modules] --> O(Model Training & Fine-tuning);
-            O --> P(Vectorization);
-            P --> Q(Vector Database);
+            S(Data Ingestion) --> T(Model Training);
+            T --> U(Vector Database);
         end
         
-        subgraph Proactive AI Functions
-            R[AI CFO] --> S[Predict Cash Flow];
-            T[AI Auditor & CA] --> U[Audit Transactions];
-            V[AI Inventory Manager] --> W[Predict Demand];
-            X[AI CEO] --> Y[Provide Strategic Insights];
-            Z[AI CTO] --> AA[Monitor Security];
-            BB[AI Lawyer] --> CC[Analyze Legal Docs];
-            DD[AI Marketer] --> EE[Generate Content];
-        end
+        V(AI Co-Pilot) --> W[Query Internal Data];
+        W --> U;
+        U --> X[Generate Response];
 
-        subgraph Conversational AI
-            FF[User Query: "How is business?"] --> GG(AI Co-Pilot);
-            GG --> Q;
-            Q --> HH[Relevant Context];
-            HH --> II(LLM Processing);
-            II --> JJ[Personalized Response];
-        end
+        Y(AI CEO) --> Z[Strategic Insights];
+        Z --> F;
+        
+        AA(AI CFO) --> BB[Financial Forecasts];
+        BB --> F;
+        
+        CC(AI Inventory Manager) --> DD[Demand Forecast];
+        DD --> L;
     end
 
-    K --> N;
-    I --> N;
-    H --> W;
-    W --> C;
-    S --> K;
-    U --> D;
-    EE --> C;
-    Y --> K;
-    AA --> K;
-    BB --> B;
-    BB --> E;
-
-    style A fill:#4CAF50,stroke:#333;
-    style C fill:#FFC107,stroke:#333;
-    style D fill:#FFC107,stroke:#333;
-    style G fill:#FFC107,stroke:#333;
-    style K fill:#2196F3,stroke:#333;
-    style N fill:#9C27B0,stroke:#333;
-    style R fill:#E91E63,stroke:#333;
-    style T fill:#E91E63,stroke:#333;
-    style V fill:#E91E63,stroke:#333;
-    style X fill:#E91E63,stroke:#333;
-    style Z fill:#E91E63,stroke:#333;
-    style BB fill:#E91E63,stroke:#333;
-    style DD fill:#E91E63,stroke:#333;
-    style FF fill:#03A9F4,stroke:#333;
-    style GG fill:#2196F3,stroke:#333;
-    style JJ fill:#8BC34A,stroke:#333;
+    F --> S;
+    J --> S;
+    K --> S;
+    V --> S;
+    end[End: All Systems Go]
             </pre>
         </div>
     </main>
